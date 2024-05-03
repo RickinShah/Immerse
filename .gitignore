@@ -1,0 +1,5 @@
+src/main/resources/mail.properties
+target
+.project
+.classpath
+.settings

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns:th="https://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Netflix login – Watch TV Shows Online, Watch Movies Online | do not enter you any of the information</title>
+    <meta name="description" content="This is a frontend only clone of netflix - Watch Netflix movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://localhost/assets2/css/global.css">
+    <link rel="stylesheet" href="http://localhost/assets2/css/landing-pages.css">
+</head>
+
+<body>
+
+    <main class="main2" style="padding: 0px 10px;">
+        <header class="d-flex space-between middle-align">
+           <a href="/Immerse/">
+            <img src="http://localhost/images/logo.png" height="50px" width="170px" alt="site logo main" style="margin: auto;"></img>
+        </a> 
+        </header>
+        <section id="login-form-section">
+            <!--Login form start-->
+
+                <div class="loginContainer d-flex direction-column">
+                    <p>⚠ Do not enter your personal information.</p>
+                    <h2 class="formtitle">
+                        Sign In
+                    </h2>
+                    <form id="loginForm" class="d-flex direction-column" name="loginForm" th:object="${user}">
+                        <input type="text" name="email" id="email" class="email" placeholder="Email or phone number" required/>
+
+                        <input type="password" name="password" id="password" placeholder="Password" required/>
+
+                    	<p id="error" style="color: red;"></p>
+                        <button class="button submitButton" id="login" >Login
+                        </button>
+
+                        <div class="rememberMe">
+<br/>
+                            <a href="/Immerse/account/forgotpassword/details"><span class="login-remember-me-label-text">Forgot Password?</span></a>
+                        </div>
+                        <p class="signUpText para">
+                            New to Netflix? <span class="signUp"><a href="/Immerse/">Sign up Now</a></span>
+                        </p>
+                        <p class="bottomMessage para">
+                            This page is protected by Google reCAPTCHA to ensure you're not a bot
+                        </p>
+                    </form>
+                </div>
+
+            <!--Login form End-->
+        </section>
+    </main>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	 <script>
+		$("#login").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+
+			$.ajax({
+				url: "/" + project + '/login',
+				method: "POST",
+				data: $('#loginForm').serialize(),
+				dataType: "json",
+				success: function(response) {
+					if(response.isBool) {
+						if(response.message == "Go Plan!")
+							window.location.href = "/" + project + "/signup/planform";
+						else
+							window.location.href = "/" + project + "/dashboard/browse";
+					}
+					else {
+						document.getElementById("error").innerText = response.message;
+					}
+
+				},
+				error: function(response) {
+					console.log(response);
+				}
+			});
+		});
+	 </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns:th="https://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Netflix</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+        integrity="sha256-t2kyTgkh+fZJYRET5l9Sjrrl4UDain5jxdbqe8ejO8A=" crossorigin="anonymous" />
+
+    <!--for global styling-->
+    <link rel="stylesheet" href="http://localhost/assets/css/global.css">
+    <!-- for footer and header-->
+    <link rel="stylesheet" href="http://localhost/assets/css/browse.css">
+    <!--custom styling-->
+    <link rel="stylesheet" href="http://localhost/assets/css/userprofile.css">
+
+    <style>
+        .Save-Button{
+            width: 200px;
+            height: 50px;
+            background-color: rgb(0, 115, 255);
+            color: white;
+            border-width: 0px;
+        }
+        .Save-Button:hover{
+            width: 200px;
+            height: 50px;
+            background-color: rgb(46, 138, 250);
+            color: white;
+            border-width: 0px;
+        }
+        .Cancel-Button{
+            width: 200px;
+            height: 50px;
+            background-color: rgb(195, 195, 195);
+            border-width: 0px;
+        }
+        .Cancel-Button:hover{
+            width: 200px;
+            height: 50px;
+            background-color: rgb(234, 234, 234);
+            border-width: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main id="mainContainer" class="p-b-40">
+
+		<header th:replace="Dashboard/header :: dashHeader"></header>
+
+
+        <!--profile section-->
+        <section class="userprofile" id="userprofilecontainer">
+            <h1>Change Phone Number</h1>
+            <h1>Change Phone Number</h1>
+            <!-- <p>Protect your account with a unique password at least 6 characters long.
+            </p><br> -->
+            <form name="form" id="form" th:object="${request}">
+
+                <input type="Text" id="mobile_no" name="mobile_no" placeholder="New Phone Number" style="width: 500px;height: 50px;border-radius: 5px;border-width: 1px;"><br><br>
+                <input type="password" id="password" name="password" placeholder="Current Password" style="width: 500px;height: 50px;border-radius: 5px;border-width: 1px;"><br>
+                <a href="/account/forgotpassword/details">Forgot Password</a><br><br>
+                <button class="Save-Button" value="Submit" id="change">Save</button>
+            </form>
+            <br>
+            <button class="Cancel-Button" onclick="window.location.href='/Immerse/dashboard/home'">Cancel</button>
+                
+
+        </section>
+
+        <!--footer section and footer fixed menu mobile-->
+		<footer th:replace="Dashboard/footer :: footer"></footer>
+
+    </main>
+
+    <div class="footer-navigation d-flex space-between">
+        <a href="browse.html" class="nav-item active">
+            <i class="fa fa-home" aria-hidden="true"></i> </br>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="nav-item">
+            <i class="fa fa-search" aria-hidden="true"></i></br>
+            Search
+        </a>
+        <a href="latest.html" class="nav-item">
+            <i class="fa fa-film" aria-hidden="true"></i></br>
+            Latest
+        </a>
+        <a href="user-profile/home.html" class="nav-item">
+            <i class="fa fa-user" aria-hidden="true"></i></br>
+            Account
+        </a>
+    </div>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	 <script type="text/javascript">
+		$("#change").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+			
+			$.ajax({
+				url: "/" + project + '/dashboard/updatephone',
+				method: "POST",
+				data: $("#form").serialize(),
+				dataType: "json",
+				success: function(response) {
+					if(response.isBool) {
+					   alert(response.message)	
+					   window.location.href = "/"+ project + "/dashboard/settings";
+					}
+					else
+						alert(response.message)
+				},
+				error: function(response) {
+					console.log(response)
+				}
+			});
+		});
+		</script>
+
+
+</body>
+
+</html>

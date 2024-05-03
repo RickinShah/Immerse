@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="US-ASCII">
+<title>Create Account</title>
+</head>
+<body>
+	<form id="form" name="form" th:object="${user}" >
+		<input type="text" id="name" name="name" placeholder="Name" ><br/><br/>
+		<input type="text" id="username" name="username" placeholder="Username" ><br/><br/>
+		<input type="text" id="email" name="email" placeholder="Email" ><br/><br/>
+		<input type="text" id="mobile_no" name="mobile_no" placeholder="Mobile Number" ><br/><br/>
+		<input type="date" id="dob" name="dob" placeholder="DOB" ><br/><br/>
+		<input type="password" id="password" name="password" placeholder="Password" ><br/><br/>
+		<input type="password" id="re_pass" name="re_pass" placeholder="Re-Password" /><br /><br />
+		<button id="createaccount">Submit</button>
+	</form>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	 
+	 <script type="text/javascript">
+		$("#createaccount").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+
+			$.ajax({
+				url: "/" + project + '/createaccount',
+				method: "POST",
+				data: $('#form').serialize(),
+				success: function(response) {
+					if(location != null) {
+						window.location.href = "/Immerse/" + response.location;
+					} else {
+						alert("Error Occured");
+					}
+				}
+			});
+		});
+	 </script>
+
+</body>
+</html>

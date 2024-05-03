@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns:th="https://www.thymeleaf.org">
+
+<!--<![endif]-->
+
+<head>
+    <title>Reg2</title>
+    <link rel="stylesheet" href="http://localhost/assets/css/Registration.css" />
+    <style>
+
+
+        .table{
+            background-color: white;
+        }
+
+        a{
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="0" width="100%">
+        <tr style="height: 100px;">
+            <td >
+                <img width="170" src="http://localhost/assets/Img/logo.svg" alt="netflix logo" />
+            </td>
+            <td style="text-align: center;" >
+            <ul style="list-style-type: none" >
+            <li th:if="${session.id != null}">
+                <a th:href="@{/signout}">Sign out</a>
+            </li>
+            <li th:unless="${session.id != null}">
+                <a th:href="@{/login}">Sign in</a>
+            </li>
+			</ul>
+            </td>
+        </tr>
+        <tr style="height: 600px;">
+            <td colspan="2" style="text-align: center;">
+                <!-- <p><span>Step 1 of 3</span><br><span style="font-size: 30px;font-weight: bold;">Create a password to start <br> your membership</span><br>
+                    <span style="font-size: 18px;">Just a few more steps and you're done! <br>
+                        We hate paperwork, too.</span></p> -->
+                        <img width="370" src="http://localhost/images/Reg2.png" alt="netflix logo" /><br>
+                <form id="emailForm" th:object="${user}">
+
+                    <input type="email" name="email" id="email" placeholder="Email Address" style="width: 350px;height: 50px; " th:value="${user.email}" required/>
+                    <p></p>
+                    <input type="text" name="mobile_no" id="mobile_no" placeholder="Phone Number" style="width: 350px;height: 50px; " required/>
+                    <p></p>
+                    <input type="password" name="password" id="password" placeholder="Password" style="width: 350px;height: 50px;" required /><br> <br>
+                    <p id="errorEmail1" style="color: red;"></p>
+                    <button id="signup" class="We-will-create-one" value="Submit" style="width: 360px;">Get Started</button>
+                </form>
+            </td>
+        </tr>
+        <tr class="bottom-segment" style="height: 200px;">
+            <td colspan="2">
+                <table border="0" width="50%">
+                    <tr >
+                        <td colspan="4">Questions? Call 000-800-919-1694</td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>FAQ</td>
+                        <td>Help Center</td>
+                        <td>Netflix Shop</td>
+                        <td>Terms of Use</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>Privacy</td>
+                        <td>Cookie Preferences</td>
+                        <td>Corporate Information</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+
+            </td>
+            
+        </tr>
+    </table>
+    
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	 <script type="text/javascript">
+		$("#signup").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+			let emailInput = document.getElementById("email").value;
+			if (!isValidEmail(emailInput)) {
+				document.getElementById("errorEmail1").innerText = "Please enter a valid email address.";
+				return;
+			}
+			
+			$.ajax({
+				url: "/" + project + '/accountsign',
+				method: "POST",
+				data: $("#emailForm").serialize(),
+				dataType: "json",
+				success: function(response) {
+					if(response.isBool)
+						window.location.href = "/"+ project + "/signup";
+					else
+						document.getElementById("errorEmail1").innerText = response.message;
+				},
+				error: function(response) {
+					console.log(response)
+				}
+			});
+		});
+
+	function isValidEmail(email) {
+	  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	  return emailRegex.test(email);
+	}
+	 </script>
+
+</body>
+
+</html>

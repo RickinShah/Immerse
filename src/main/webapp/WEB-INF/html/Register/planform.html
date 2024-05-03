@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <title>Reg4</title>
+    <link rel="stylesheet" href="http://localhost/assets/css/Registration.css" />
+    <style>
+
+
+        .table{
+            background-color: white;
+        }
+
+        a{
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="0" width="100%">
+        <tr style="height: 100px;">
+            <td >
+                <img width="170" src="http://localhost/assets/Img/logo.svg" alt="netflix logo" style="margin: 15px;"/>
+            </td>
+            <td colspan="2">&nbsp</td>
+            <td style="text-align: center;" >
+            <ul style="list-style-type: none" >
+            <li th:if="${session.id != null}">
+                <a th:href="@{/signout}">Sign out</a>
+            </li>
+            <li th:unless="${session.id != null}">
+                <a th:href="@{/login}">Sign in</a>
+            </li>
+			</ul>
+            </td>
+        </tr>
+
+        <tr style="height: 100px;">
+            <td colspan="5">
+            <img width="1300" src="http://localhost/images/Reg4-1.png" alt="netflix logo"  style="align-items: start;margin: 10px;"/><br>
+        </td>
+        </tr>
+        <form id="form" name="form">
+        <tr style="height: 600px;">
+            
+            <td>
+                <div class="card">
+                    <input type="radio" name="pricing" id="card1" value="Premium">
+                    <label for="card1"> 
+                        <label for="username" class="custom-label1"> <span style="color: white; margin: 15px;"> <b> Premium </span><br><span style="color: white; margin: 15px;">4k + HDR</b></span></label>
+                        <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="margin: 10px;">
+
+                    <p>
+                        <span>Monthly</span><br><b>649</b>
+                        <hr width="250">
+                        <span>Video and sound quality</span><br><b>Best</b>
+                        <hr width="250">
+                        <span>Resolution</span><br><b>4k (Ultra HD + HDR)</b>
+                        <hr width="250">
+                        <span>Spatial audio(Immersive sound)</span><br><b>Included</b>
+                        <hr width="250">
+                        <span>Surported devices</span><br><b>TV,Computer,Mobile,Tablet</b>
+                        <hr width="250">
+                        <span>Devices your household can watch at <br> the same time</span><br><b>4</b>
+                        <hr width="250">
+                        <span>Downloaded devices</span><br><b>6</b>
+                    </p>
+                </div>
+                </label>
+                </div>
+            </td>
+            <td>
+
+                <div class="card">
+                    <input type="radio" name="pricing" id="card2" value="Standard">
+                    <label for="card2">
+                        <label for="username" class="custom-label2"> <span style="color: white; margin: 15px;"> <b> Standard </span><br><span style="color: white; margin: 15px;">1080p</b></span></label>
+                        <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="margin: 10px;">
+
+                    <p>
+                        <span>Monthly</span><br><b>499</b>
+                        <hr width="250">
+                        <span>Video and sound quality</span><br><b>Great</b>
+                        <hr width="250">
+                        <span>Resolution</span><br><b>1080p (Full HD)</b>
+                        <hr width="250">
+                        <span>Surported devices</span><br><b>TV,Computer,Mobile,Tablet</b>
+                        <hr width="250">
+                        <span>Devices your household can watch at <br> the same time</span><br><b>2</b>
+                        <hr width="250">
+                        <span>Downloaded devices</span><br><b>2</b>
+                    </p>
+                </div>
+                    </label>
+                </div>
+            </td>
+            <td>
+                <div class="card">
+                    <input type="radio" name="pricing" id="card3" value="Basic">
+                    <label for="card3">
+                        <label for="username" class="custom-label3"> <span style="color: white; margin: 15px;"> <b> Basic </span><br><span style="color: white; margin: 15px;">720p</b></span></label>
+                        <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="margin: 10px;">
+
+                    <p>
+                        <span>Monthly</span><br><b>199</b>
+                        <hr width="250">
+                        <span>Video and sound quality</span><br><b>Good</b>
+                        <hr width="250">
+                        <span>Resolution</span><br><b>720p (HD)</b>
+                        <hr width="250">
+                        <span>Surported devices</span><br><b>TV,Computer,Mobile,Tablet</b>
+                        <hr width="250">
+                        <span>Devices your household can watch at <br> the same time</span><br><b>1</b>
+                        <hr width="250">
+                        <span>Downloaded devices</span><br><b>1</b>
+                    </p>
+                </div>
+                    </label>
+                </div>
+            </td>
+            <td>
+                <div class="card">
+                    <input type="radio" name="pricing" id="card4" value="Mobile">
+                    <label for="card4">
+                        <label for="username" class="custom-label4"> <span style="color: white; margin: 15px;"> <b> Mobile </span><br><span style="color: white; margin: 15px;">480p</b></span></label>
+                        <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="margin: 10px;">
+
+                    <p>
+                        <span>Monthly</span><br><b>149</b>
+                        <hr width="250">
+                        <span>Video and sound quality</span><br><b>Fair</b>
+                        <hr width="250">
+                        <span>Resolution</span><br><b>480p</b>
+                        <hr width="250">
+                        <span>Surported devices</span><br><b>Mobile phone,Tablet</b>
+                        <hr width="250">
+                        <span>Devices your household can watch at <br> the same time</span><br><b>1</b>
+                        <hr width="250">
+                        <span>Downloaded devices</span><br><b>1</b>
+                    </p>
+                </div>
+                    </label>
+                </div>
+            </td>
+
+            
+        </tr>
+
+        <tr style="height: 100px;">
+            <td colspan="5" style="text-align: center;">
+            <p>HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details.
+                Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard, and 1 with Basic and Mobile.</p>
+            <button class="We-will-create-one" id="planButton" value="Submit" style="width: 400px;">Next</button>
+
+        </td>
+        </tr>
+</form>
+        
+        <tr class="bottom-segment" style="height: 200px;">
+            <td colspan="4">
+                <table border="0" width="50%">
+                    <tr >
+                        <td colspan="4">Questions? Call 000-800-919-1694</td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>FAQ</td>
+                        <td>Help Center</td>
+                        <td>Netflix Shop</td>
+                        <td>Terms of Use</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>Privacy</td>
+                        <td>Cookie Preferences</td>
+                        <td>Corporate Information</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+
+            </td>
+            
+        </tr>
+    </table>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	 <script type="text/javascript">
+		$("#planButton").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+			
+			$.ajax({
+				url: "/" + project + '/plan',
+				method: "POST",
+				data: $("#form").serialize(),
+				dataType: "json",
+				success: function(response) {
+					console.log(response.isBool);
+					alert(response.message);
+					window.location.href = "/"+ project + "/dashboard/browse";
+				},
+				error: function(response) {
+					console.log(response)
+				}
+			});
+		});
+		</script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="ForgotPassword/header :: head"></head>
+<body>
+    <main id="mainContainer" class="p-b-40">
+		<header th:replace="ForgotPassword/header :: dashHeader"></header>
+        <!--profile section-->
+        <section class="userprofile" id="userprofilecontainer">
+            <h1>One Time Password</h1>
+            <h1>One Time Password</h1>
+            <!-- <p>Protect your account with a unique password at least 6 characters long.
+            </p><br> -->
+			<form name="form" id="form" th:object="${otpModel}">
+
+                <input type="password" id="otp" name="otp" placeholder="Enter OTP" style="width: 500px;height: 50px;border-radius: 5px;border-width: 1px;"><br><br>
+				<button class="button submitButton" id="validate" >Submit</button>
+            </form>
+            <br>
+                
+		<footer th:replace="ForgotPassword/footer :: footer"></footer>
+
+
+        </section>
+    </main>
+	 
+	 
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	 <script type="text/javascript">
+	 var count = 0;
+		$("#validate").click(function(event) {
+			event.preventDefault();
+			const project = ((window.location.pathname).split("/")[1]);
+			const username = ((window.location.pathname).split("/")[4])
+
+			$.ajax({
+				url: "/" + project + '/account/forgotpassword/validate',
+				method: "POST",
+				data: $('#form').serialize(),
+				success: function(response) {
+					if(response.isBool) {
+						window.location.href= "/" + project + "/account/forgotpassword/changepassword";
+					}
+					else {
+						count++;
+						if(count == 3) {
+							alert("3 tries completed!");
+							window.location.href = "/" + project + "/";
+						}
+						alert(response.message);
+					}
+				},
+				error: function(response) {
+					alert("Failed");
+				}
+			});
+		});
+	 </script>
+
+</body>
+</html>

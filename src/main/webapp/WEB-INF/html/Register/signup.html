@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head> 
+    <title>Reg3</title>
+    <link rel="stylesheet" href="http://localhost/assets/css/Registration.css" />
+    <style>
+
+
+        .table{
+            background-color: white;
+        }
+
+        a{
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="0" width="100%">
+        <tr style="height: 100px;">
+            <td >
+                <img width="170" src="http://localhost/assets/Img/logo.svg" alt="netflix logo" />
+            </td>
+            <td style="text-align: center;" >
+            <ul style="list-style-type: none" >
+            <li th:if="${session.id != null}">
+                <a th:href="@{/signout}">Sign out</a>
+            </li>
+            <li th:unless="${session.id != null}">
+                <a th:href="@{/login}">Sign in</a>
+            </li>
+			</ul>
+            </td>
+        </tr>
+        <tr style="height: 600px;">
+            <td colspan="2" style="text-align: center;">
+                <img width="300" src="http://localhost/images/Reg3.png" alt="netflix logo" /><br>
+                <button class="We-will-create-one" type="submit" value="Submit" onclick="window.location.href='/Immerse/signup/planform'" style="width: 360px;">Next</button>
+                
+            </td>
+        </tr>
+        <tr class="bottom-segment" style="height: 200px;">
+            <td colspan="2">
+                <table border="0" width="50%">
+                    <tr >
+                        <td colspan="4">Questions? Call 000-800-919-1694</td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>FAQ</td>
+                        <td>Help Center</td>
+                        <td>Netflix Shop</td>
+                        <td>Terms of Use</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                    <tr >
+                        <td>Privacy</td>
+                        <td>Cookie Preferences</td>
+                        <td>Corporate Information</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+
+            </td>
+            
+        </tr>
+    </table>
+
+</body>
+
+</html>

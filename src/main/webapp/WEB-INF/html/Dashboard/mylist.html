@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="no-js" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Netflix</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://localhost/assets/lib/jquery 3.5.0.js"></script>
+     <!--main script file-->
+     <script src="http://localhost/assets/js/main-script.js"></script>
+
+    <link rel="stylesheet" href="http://localhost/assets/css/global.css">
+    <link rel="stylesheet" href="http://localhost/assets/css/browse.css">
+    <!-- owl carousel script -->
+    <script src="http://localhost/assets/lib/owl.carousel.js"></script>
+    <link rel="stylesheet" href="http://localhost/assets2/lib/owl.carousel.css" />
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+    <!-- dashboard/browse page block start | home page after login | -->
+
+    <main id="mainContainer" class="p-b-40">
+        <div>
+
+			<header th:replace="Dashboard/header :: dashHeader"></header>
+
+            <!--my list container-->
+            <section id="mylist" class="container p-t-40" style="padding-top: 180px;">
+                <h4 class="romantic-heading">
+                    My List
+                </h4>
+                <div class="my-list-page-container d-flex flex-start flex-middle">
+                    <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
+                        <div class="video" th:each="wishlist : ${wishlists}">
+                            <video class="mylist-img p-r-10 p-t-10 video-item" th:id="${wishlist.netflix.show_id}"
+                                th:poster="|http://localhost/media/${wishlist.netflix.show_id}/poster.jpg|">
+                            </video>
+
+                            <div class="video-description d-flex flex-end direction-column">
+                                <div class="play-button">
+                                        <a th:href="|/Immerse/dashboard/single/${wishlist.netflix.show_id}|">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M6 4l15 8-15 8z" fill="black"></path>
+                                    </svg></a>
+                                </div>
+                                <div>
+                                    <h4 class="heading f-w-8 text-shadow" th:text="${wishlist.netflix.title}">
+                                        
+                                    </h4>
+                                </div>
+                                <div class="info d-flex flex-middle flex-no-wrap">
+                                    <p class="rated text-shadow"><strong>18+</strong></p>
+                                    <p class="season-count text-shadow"> 1 Season</p>
+                                </div>
+                                <div class="genere d-flex flex-no-wrap text-shadow">
+                                    <p th:text="${wishlist.netflix.type}"></p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+        </div>
+
+		<footer th:replace="Dashboard/footer :: footer"></footer>
+    </main>
+
+    <div class="footer-navigation d-flex space-between">
+        <a href="browse.html" class="nav-item active">
+            <i class="fa fa-home" aria-hidden="true"></i> </br>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="nav-item">
+            <i class="fa fa-search" aria-hidden="true"></i></br>
+            Search
+        </a>
+        <a href="latest.html" class="nav-item">
+            <i class="fa fa-film" aria-hidden="true"></i></br>
+            Latest
+        </a>
+        <a href="user-profile/home.html" class="nav-item">
+            <i class="fa fa-user" aria-hidden="true"></i></br>
+            Account
+        </a>
+    </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        <script>
+        //else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        //    video.src = 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8';
+        //    video.addEventListener('loadedmetadata',function() {
+        //    video.play();
+        //    });
+        //}
+
+        window.onload = function() {
+            getVideos();
+        };
+        function getVideos() {
+        	var videoList = document.getElementsByTagName('video');
+        	for(var i = 0; i < videoList.length; i++) {
+        		var video = videoList[i];
+				var hls = new Hls();
+        		var show_id = videoList[i].id;
+        		console.log('http://localhost/media/' + show_id + '/master.m3u8');
+				hls.loadSource('http://localhost/media/' + show_id + '/master.m3u8');
+				hls.attachMedia(video);
+        		
+        	}
+        }
+        </script>
+</body>
+
+</html>
