@@ -1,15 +1,12 @@
 # Immerse - A Video Streaming Web Application
 
 ## Technologies
-- Java
-- Spring
-- Hibernate
-- Nginx server
-- Shell Scripting
-- FFMPEG
-- AJAX
-- HTML
-- CSS
-- JavaScript
-- HLS
-- MariaDB
+- Java - Language
+- Spring - Framework
+- Hibernate - ORM
+- Nginx - Reverse Proxy
+- Shell Script - Scripting Language
+- FFMPEG - Command-line Tool
+- JavaScript - Language
+- HLS(HTTP Live Streaming) - Video Streaming
+- MariaDB - Database
